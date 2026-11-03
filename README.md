@@ -1,6 +1,6 @@
-# Northline
+# Alderbrook Interop
 
-Northline is the clinical interoperability platform for **Alderbrook Care Network**, a fictional regional health system. Three facilities register the same people in two electronic health records. Alderbrook Medical Center sends HL7 v2 from Vistara Chart. Rivergate Community Hospital and Cedar Hollow Outpatient send FHIR R4 from LumenClinic. Northline turns that traffic into one enterprise person, a standard clinical record, and a Patient 360.
+Alderbrook Interop is the clinical interoperability platform for **Alderbrook Care Network**, a fictional regional health system. Three facilities register the same people in two electronic health records. Alderbrook Medical Center sends HL7 v2 from Vistara Chart. Rivergate Community Hospital and Cedar Hollow Outpatient send FHIR R4 from LumenClinic. Alderbrook Interop turns that traffic into one enterprise person, a standard clinical record, and a Patient 360.
 
 The as-of date for every measure in this repository is **2026-11-01**. It is fixed so a rerun produces the same cohorts.
 
@@ -16,9 +16,9 @@ A patient can leave Cedar Hollow in the morning and be admitted at Alderbrook th
 
 The population is synthetic. Identifiers that look like SSNs use the unissued 900 range. No real patient, facility, or practitioner is represented. SNOMED CT, LOINC, ICD-10-CM, and RxNorm identifiers in the crosswalks are public codes used here for education; production use needs the appropriate terminology licenses.
 
-## What Northline decides
+## What Alderbrook Interop decides
 
-Northline is organized as five lanes. The names describe the clinical work, not a storage tier.
+Alderbrook Interop is organized as five lanes. The names describe the clinical work, not a storage tier.
 
 | Lane | What it holds | Why it exists |
 | --- | --- | --- |
@@ -112,7 +112,7 @@ make pipeline
 
 ## Evidence from the local demo run
 
-These figures come from `evidence/run_metrics.json`, produced by Spark **3.5.6** on this machine on **2026-11-03T17:44:09Z**. They are local timings, not a Databricks cluster.
+These figures come from `evidence/run_metrics.json`, produced by Spark **3.5.6** on this machine on **2026-11-03T17:51:57Z**. They are local timings, not a Databricks cluster.
 
 | Measure | Value |
 | --- | --- |
@@ -139,9 +139,9 @@ These figures come from `evidence/run_metrics.json`, produced by Spark **3.5.6**
 | Mean scorecard pass rate | AMC 0.9517, CHO 0.9778, RGH 1.0 |
 | De-identified identifier columns | none |
 | Broadcast join observed | yes |
-| OPTIMIZE ZORDER | ran in 1.525 s; file count stayed 3 (17,700 bytes before and after) |
+| OPTIMIZE ZORDER | ran in 1.404 s; file count stayed 3 (17,700 bytes before and after) |
 
-Stage seconds, local: bulk 6.274, stream backfill 5.835, stream delayed 4.797, interpret 1.529, conform 10.974, insight 16.952, total **47.946**.
+Stage seconds, local: bulk 5.866, stream backfill 5.053, stream delayed 4.168, interpret 1.557, conform 11.431, insight 17.165, total **46.713**.
 
 Elena Voss is one enterprise person. The golden given name is Elena, from Alderbrook, not the clinic typo Elaina. The golden phone is the later clinic number 5035550199. Willa Brooks's street survives HL7 escaping as `12 Pine & Oak St`. The second potassium of 6.1 mmol/L is the persistent abnormal. Quinn Adler's `ZZZ-NOT-A-CODE` is quarantined and is absent from the lab trend. Sofia Alvarez and Sofia Alvares link probabilistically. James Miller born in 1960 and James Miller born in 1990 stay two people.
 
@@ -177,7 +177,7 @@ Tests on this machine: **24 passed**, coverage **88%** with branch coverage (`py
 
 The watermark is about arrival delay, not about clinical history. A backfill that spans months is one batch and nothing in it is late. A result that shows up in the next batch, hours behind the watermark, is late and still kept.
 
-Birth-year blocking misses a chart whose birth year was typed wrong. Northline also blocks on Soundex plus ZIP3, which is how Helen Cho reaches the review queue instead of being silently dropped. Father and son James Miller do not share a ZIP3 or a birth year, so the scorer is not asked to separate them. Olivia Grant and Noah Grant share both a year and a ZIP and are scored and rejected.
+Birth-year blocking misses a chart whose birth year was typed wrong. Alderbrook Interop also blocks on Soundex plus ZIP3, which is how Helen Cho reaches the review queue instead of being silently dropped. Father and son James Miller do not share a ZIP3 or a birth year, so the scorer is not asked to separate them. Olivia Grant and Noah Grant share both a year and a ZIP and are scored and rejected.
 
 A glucose of 4000 maps to LOINC and then fails the plausible-range rule. An unmapped local code fails vocabulary handling instead, on purpose. Those are different queues.
 

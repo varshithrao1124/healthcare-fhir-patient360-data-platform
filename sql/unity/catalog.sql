@@ -1,4 +1,4 @@
--- Unity Catalog layout for Northline.
+-- Unity Catalog layout for Alderbrook Interop.
 -- Apply in a Databricks workspace with a metastore. Not executed by the local Spark run.
 
 CREATE CATALOG IF NOT EXISTS acn_prod;

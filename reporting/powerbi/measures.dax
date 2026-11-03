@@ -1,4 +1,4 @@
--- Power BI measures for the de-identified Northline star schema.
+-- Power BI measures for the de-identified Alderbrook Interop star schema.
 -- Bind these to acn_prod.deidentified and acn_prod.insight aggregates.
 -- This file was not published to the Power BI service in this repository.
 

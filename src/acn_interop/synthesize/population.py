@@ -1,4 +1,4 @@
-"""Build a reproducible HL7 and FHIR feed for the Northline local run.
+"""Build a reproducible HL7 and FHIR feed for the Alderbrook Interop local run.
 
 The scripted patients are the clinical story: duplicate charts, a review-band
 pair, a 30-day readmission, a transfer, care gaps, and intentional defects.
@@ -624,7 +624,7 @@ def _defects(b: _Builder) -> None:
         ssn="123-45-6789", visit="V-NONSYNTH", patient_class="O", admit=stamp("2026-05-05 05:10:00"),
     ))
     b.hl7("AMC", "2026-05-05 05:11:00", "THIS IS NOT HL7")
-    b.hl7("CHO", "2026-05-05 05:12:00", "MSH|^~\\&|LUMEN|CHO|NORTHLINE|ALDERBROOK|20260505051200||ADT^A04|MSGDUP|P|2.5\rMSH|^~\\&|LUMEN|CHO|NORTHLINE|ALDERBROOK|20260505051200||ADT^A04|MSGDUP2|P|2.5\r")
+    b.hl7("CHO", "2026-05-05 05:12:00", "MSH|^~\\&|LUMEN|CHO|ACNINTEROP|ALDERBROOK|20260505051200||ADT^A04|MSGDUP|P|2.5\rMSH|^~\\&|LUMEN|CHO|ACNINTEROP|ALDERBROOK|20260505051200||ADT^A04|MSGDUP2|P|2.5\r")
     b.fhir("RGH", "2026-05-05 05:13:00", {"resourceType": "Observation", "id": "bad-obs", "status": "final"}, stream=True, bulk=False)
     b.backfill.append(
         {

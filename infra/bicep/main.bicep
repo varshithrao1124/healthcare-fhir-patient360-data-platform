@@ -13,9 +13,9 @@ param uniqueSuffix string
 param tenantId string
 
 @description('Resource group Databricks creates for its own managed resources.')
-param databricksManagedRg string = 'rg-acn-northline-dbw-managed'
+param databricksManagedRg string = 'rg-acn-alderbrook-dbw-managed'
 
-var prefix = 'acn-nl-${environment}'
+var prefix = 'acn-alderbrook-${environment}'
 
 module logs 'modules/monitor.bicep' = {
   name: 'logs'
@@ -28,7 +28,7 @@ module logs 'modules/monitor.bicep' = {
 module storage 'modules/storage.bicep' = {
   name: 'storage'
   params: {
-    name: 'acnnl${environment}${uniqueSuffix}'
+    name: 'acnalder${environment}${uniqueSuffix}'
     location: location
   }
 }

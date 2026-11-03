@@ -6,7 +6,7 @@ from acn_interop.interpret.hl7_validate import validate_hl7
 
 ADT = "\r".join(
     [
-        "MSH|^~\\&|VISTARA|AMC|NORTHLINE|ALDERBROOK|20260801150000||ADT^A01|MSG100|P|2.5",
+        "MSH|^~\\&|VISTARA|AMC|ACNINTEROP|ALDERBROOK|20260801150000||ADT^A01|MSG100|P|2.5",
         "EVN|A01|20260801150000",
         "PID|1||AMC10001^^^AMC^MR~900551001^^^USSSA^SS||VOSS^ELENA^M||19790412|F|||"
         + "12 Pine \\T\\ Oak St^^Alderbrook^OR^97702||5035550101",
@@ -49,7 +49,7 @@ def test_missing_msh_and_batched_messages_fail():
         raised = True
         assert "MSH" in str(exc)
     assert raised
-    batched = ADT + "MSH|^~\\&|VISTARA|AMC|NORTHLINE|ALDERBROOK|20260801150000||ADT^A08|MSG2|P|2.5\r"
+    batched = ADT + "MSH|^~\\&|VISTARA|AMC|ACNINTEROP|ALDERBROOK|20260801150000||ADT^A08|MSG2|P|2.5\r"
     try:
         parse_message(batched)
         raised = False

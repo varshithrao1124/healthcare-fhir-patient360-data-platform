@@ -1,6 +1,6 @@
 # Local setup
 
-Northline runs on Python 3.10+ and a Java 17 or 21 runtime. This repository was executed with Python 3.12.3, OpenJDK 21, PySpark 3.5.6, and delta-spark 3.3.2.
+Alderbrook Interop runs on Python 3.10+ and a Java 17 or 21 runtime. This repository was executed with Python 3.12.3, OpenJDK 21, PySpark 3.5.6, and delta-spark 3.3.2.
 
 ## Install
 

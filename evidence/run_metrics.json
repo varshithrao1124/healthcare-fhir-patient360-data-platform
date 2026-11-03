@@ -1,18 +1,18 @@
 {
   "profile": "demo",
   "as_of": "2026-11-01",
-  "generated_at": "2026-11-03T17:44:09Z",
+  "generated_at": "2026-11-03T17:51:57Z",
   "spark_version": "3.5.6",
   "timings_seconds": {
     "land": 0.001,
-    "bulk": 6.274,
-    "stream_backfill": 5.835,
-    "stream_delayed": 4.797,
-    "interpret": 1.529,
-    "conform": 10.974,
-    "insight": 16.952,
-    "optimize": 1.525,
-    "total": 47.946
+    "bulk": 5.866,
+    "stream_backfill": 5.053,
+    "stream_delayed": 4.168,
+    "interpret": 1.557,
+    "conform": 11.431,
+    "insight": 17.165,
+    "optimize": 1.404,
+    "total": 46.713
   },
   "capture_events": 110,
   "late_events": 1,
@@ -98,7 +98,7 @@
     "after_files": 3,
     "before_bytes": 17700,
     "after_bytes": 17700,
-    "seconds": 1.525
+    "seconds": 1.404
   },
   "insight_counts": {
     "encounter_fact": 25,

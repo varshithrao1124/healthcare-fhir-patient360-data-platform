@@ -42,7 +42,7 @@ Readmission and care gaps are computed on the conformed clocks. The de-identifie
 
 ## Files and layout on disk
 
-Conform tables are written partitioned by `source_system` so a facility replay can prune. The encounter table is then `OPTIMIZE ... ZORDER BY (enterprise_person_id)`. On the demo run that command took 1.525 seconds and left the file count at 3, because the table was already three small files. The command is still the right one once micro-batches create many files; this volume does not show a reduction, and the metrics say so.
+Conform tables are written partitioned by `source_system` so a facility replay can prune. The encounter table is then `OPTIMIZE ... ZORDER BY (enterprise_person_id)`. On the demo run that command took 1.404 seconds and left the file count at 3, because the table was already three small files. The command is still the right one once micro-batches create many files; this volume does not show a reduction, and the metrics say so.
 
 Shuffle partitions are 4 in the local session. A Databricks job in the bundle turns on optimize-write and auto-compaction and sizes a small cluster. Liquid clustering is declared in `sql/unity/catalog.sql` for the warehouse form of the same person-scoped access. It was not executed.
 

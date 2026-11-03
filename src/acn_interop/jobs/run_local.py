@@ -1,4 +1,4 @@
-"""Command line entry for a local Northline run."""
+"""Command line entry for a local Alderbrook Interop run."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from acn_interop.synthesize.population import build_feeds, write_sample_files
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Run the Northline clinical interoperability pipeline locally")
+    parser = argparse.ArgumentParser(description="Run the Alderbrook Interop clinical pipeline locally")
     parser.add_argument("--profile", choices=["smoke", "demo"], default="demo")
     parser.add_argument("--lake", default="data/lake")
     parser.add_argument("--evidence", default="evidence")
@@ -29,7 +29,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.write_samples:
         write_sample_files(repo_root() / "samples")
     feeds = build_feeds(args.profile)
-    spark = build_spark(f"northline-{args.profile}")
+    spark = build_spark(f"alderbrook-{args.profile}")
     try:
         report = run_pipeline(spark, settings, feeds)
     finally:

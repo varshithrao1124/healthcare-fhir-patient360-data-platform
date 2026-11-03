@@ -10,7 +10,7 @@ _CONFIGURED = False
 
 def configure_logging(level: str = "INFO", log_path: str | None = None) -> logging.Logger:
     global _CONFIGURED
-    logger = logging.getLogger("northline")
+    logger = logging.getLogger("alderbrook")
     if _CONFIGURED:
         return logger
     logger.setLevel(level)
@@ -31,4 +31,4 @@ def configure_logging(level: str = "INFO", log_path: str | None = None) -> loggi
 
 
 def get_logger(name: str) -> logging.Logger:
-    return logging.getLogger(f"northline.{name}")
+    return logging.getLogger(f"alderbrook.{name}")

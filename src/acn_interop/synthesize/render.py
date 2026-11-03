@@ -63,7 +63,7 @@ def render_adt(
     birth_raw: str | None = None,
 ) -> str:
     segments = [
-        f"MSH|^~\\&|{APP[source]}|{source}|NORTHLINE|ALDERBROOK|{hl7_ts(event_time)}||ADT^{trigger}|{control}|P|2.5",
+        f"MSH|^~\\&|{APP[source]}|{source}|ACNINTEROP|ALDERBROOK|{hl7_ts(event_time)}||ADT^{trigger}|{control}|P|2.5",
         f"EVN|{trigger}|{hl7_ts(event_time)}",
     ]
     pid3 = f"{escape(mrn)}^^^{source}^MR"
@@ -137,7 +137,7 @@ def render_oru(
     if ssn:
         pid3 += "~" + escape("".join(ch for ch in ssn if ch.isdigit())) + "^^^USSSA^SS"
     segments = [
-        f"MSH|^~\\&|{APP[source]}|{source}|NORTHLINE|ALDERBROOK|{hl7_ts(event_time)}||ORU^R01|{control}|P|2.5",
+        f"MSH|^~\\&|{APP[source]}|{source}|ACNINTEROP|ALDERBROOK|{hl7_ts(event_time)}||ORU^R01|{control}|P|2.5",
         "PID|1||"
         + pid3
         + "||"

@@ -1,5 +1,5 @@
 bundle:
-  name: northline
+  name: alderbrook
 
 include:
   - databricks/jobs.yml
@@ -14,10 +14,10 @@ targets:
     mode: production
     workspace:
       host: ${DATABRICKS_HOST}
-      root_path: /Workspace/acn/northline
+      root_path: /Workspace/acn/alderbrook
 
 variables:
   catalog:
     default: acn_prod
   salt_secret_scope:
-    default: northline
+    default: alderbrook

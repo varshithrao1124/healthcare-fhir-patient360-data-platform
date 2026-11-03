@@ -51,7 +51,7 @@ def _html(report: dict) -> str:
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>Northline local scorecard</title>
+  <title>Alderbrook Interop local scorecard</title>
   <style>
     body {{ font-family: Georgia, serif; margin: 2rem; color: #1c2833; background: #f7f4ef; }}
     h1 {{ font-weight: normal; }}
@@ -61,7 +61,7 @@ def _html(report: dict) -> str:
   </style>
 </head>
 <body>
-  <h1>Northline local Patient 360 scorecard</h1>
+  <h1>Alderbrook Interop local Patient 360 scorecard</h1>
   <p class="note">Synthetic Alderbrook Care Network data. This page is rendered from the local
   Spark run that wrote <code>run_metrics.json</code>. It is not a Power BI or Azure screenshot.</p>
   <table>

@@ -1,7 +1,7 @@
 resources:
   jobs:
-    northline_daily:
-      name: northline-daily-conform
+    alderbrook_daily:
+      name: alderbrook-daily-conform
       schedule:
         quartz_cron_expression: "0 0 6 * * ?"
         timezone_id: America/Los_Angeles
@@ -12,9 +12,9 @@ resources:
             parameters:
               - --profile
               - demo
-          job_cluster_key: northline
+          job_cluster_key: alderbrook
       job_clusters:
-        - job_cluster_key: northline
+        - job_cluster_key: alderbrook
           new_cluster:
             spark_version: 14.3.x-scala2.12
             node_type_id: Standard_D4ds_v5
@@ -30,8 +30,8 @@ resources:
               EVENT_HUBS_CONNECTION_STRING: "{{secrets/${var.salt_secret_scope}/eventhub-connection}}"
               EVENT_HUB_NAME: clinical-ingress
 
-    northline_capture_stream:
-      name: northline-capture-stream
+    alderbrook_capture_stream:
+      name: alderbrook-capture-stream
       continuous:
         pause_status: PAUSED
       tasks:

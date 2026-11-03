@@ -1,23 +1,23 @@
 """Exceptions that mark which lane of the pipeline failed."""
 
 
-class NorthlineError(Exception):
-    """Base error for Northline."""
+class AlderbrookError(Exception):
+    """Base error for Alderbrook Interop."""
 
 
-class ConfigError(NorthlineError):
+class ConfigError(AlderbrookError):
     """Raised when required configuration or a secret reference is missing."""
 
 
-class ContractError(NorthlineError):
+class ContractError(AlderbrookError):
     """Raised when a payload breaks a published contract."""
 
 
-class ParseError(NorthlineError):
+class ParseError(AlderbrookError):
     """Raised when an HL7 or FHIR payload cannot be interpreted."""
 
 
-class PipelineError(NorthlineError):
+class PipelineError(AlderbrookError):
     """Raised when a pipeline stage fails after retries."""
 
     def __init__(self, stage: str, message: str):

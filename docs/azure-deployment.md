@@ -20,11 +20,11 @@ Parameters live in `infra/bicep/parameters.example.json`. Replace `tenantId` and
 
 ## Suggested order
 
-1. Create a resource group, for example `rg-acn-northline`.
-2. `az deployment group create --resource-group rg-acn-northline --template-file infra/bicep/main.bicep --parameters @infra/bicep/parameters.example.json`
+1. Create a resource group, for example `rg-acn-alderbrook`.
+2. `az deployment group create --resource-group rg-acn-alderbrook --template-file infra/bicep/main.bicep --parameters @infra/bicep/parameters.example.json`
 3. Store the token salt, the Event Hubs connection string, and a Databricks token in Key Vault. Do not put them in git.
 4. Point the FHIR service `$export` at the `landing` container.
-5. Create a Databricks secret scope `northline` backed by that vault.
+5. Create a Databricks secret scope `alderbrook` backed by that vault.
 6. From a machine with `DATABRICKS_HOST` and `DATABRICKS_TOKEN`, run `databricks bundle deploy --target prod`.
 7. Import `orchestration/adf/pipeline_daily_conform.json` and attach a Databricks linked service whose token is a Key Vault reference.
 8. Apply `sql/unity/catalog.sql` and `sql/unity/masking.sql` in a workspace that has a metastore.
@@ -48,8 +48,8 @@ Streaming checkpoints belong on ADLS (`checkpoint_uri` in the example config). D
 
 `databricks/jobs.yml` defines two jobs on Databricks Runtime 14.3 LTS:
 
-- `northline-capture-stream` is a continuous job, paused until someone unpauses it.
-- `northline-daily-conform` is 06:00 America/Los_Angeles and runs the Python entry point.
+- `alderbrook-capture-stream` is a continuous job, paused until someone unpauses it.
+- `alderbrook-daily-conform` is 06:00 America/Los_Angeles and runs the Python entry point.
 
 The Data Factory pipeline waits for a file in the bulk-export dataset and then starts the conform job. The dataset and linked service are names, not embedded credentials.
 
@@ -63,8 +63,8 @@ The Data Factory pipeline waits for a file in the bulk-export dataset and then s
 
 `platform/telemetry.py` appends JSON lines to `evidence/metrics.jsonl`. If `APPLICATIONINSIGHTS_CONNECTION_STRING` is set, a hosted job would forward those records. This process does not open that connection. Metric names already used:
 
-- `northline.capture.events`
-- `northline.capture.late`
-- `northline.mpi.review_queue`
-- `northline.assure.quarantine`
-- `northline.mpi.golden`
+- `alderbrook.capture.events`
+- `alderbrook.capture.late`
+- `alderbrook.mpi.review_queue`
+- `alderbrook.assure.quarantine`
+- `alderbrook.mpi.golden`

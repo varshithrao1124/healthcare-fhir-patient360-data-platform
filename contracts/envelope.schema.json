@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://alderbrook.example/contracts/envelope.schema.json",
-  "title": "Northline clinical ingress envelope",
+  "title": "Alderbrook Interop clinical ingress envelope",
   "type": "object",
   "required": ["event_id", "source_system", "payload_type", "event_time", "body"],
   "properties": {

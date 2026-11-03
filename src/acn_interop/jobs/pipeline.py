@@ -1,4 +1,4 @@
-"""Local Northline run: capture, interpret, resolve, conform, insight.
+"""Local Alderbrook Interop run: capture, interpret, resolve, conform, insight.
 
 Streaming capture is incremental and idempotent. Interpretation is a batch
 reconstruction from that immutable capture lane, so a checkpoint replay does
@@ -102,15 +102,15 @@ def run_pipeline(spark: SparkSession, settings: Settings, feeds: dict) -> dict:
         optimize = _optimize(spark, settings)
         timings["optimize"] = optimize.get("seconds", 0.0)
         report = _report(spark, settings, feeds, timings, dead_letters, optimize, time.perf_counter() - started)
-        sink.emit("northline.capture.events", report["capture_events"])
-        sink.emit("northline.capture.late", report["late_events"])
-        sink.emit("northline.mpi.review_queue", report["review_queue"])
-        sink.emit("northline.assure.quarantine", report["quarantine_rows"])
+        sink.emit("alderbrook.capture.events", report["capture_events"])
+        sink.emit("alderbrook.capture.late", report["late_events"])
+        sink.emit("alderbrook.mpi.review_queue", report["review_queue"])
+        sink.emit("alderbrook.assure.quarantine", report["quarantine_rows"])
         if settings.evidence:
             write_evidence(report, settings.evidence)
         return report
     except Exception as exc:
-        raise PipelineError("northline", str(exc)) from exc
+        raise PipelineError("alderbrook", str(exc)) from exc
 
 
 def _reset(settings: Settings) -> None:
@@ -416,12 +416,12 @@ def _conform(spark: SparkSession, settings: Settings, frames: dict, sink: Metric
     if frames.get("organizations") is not None:
         write_delta(frames["organizations"], lake / "interpret" / "organization")
     spark.sparkContext.parallelize([1]).count()
-    sink.emit("northline.mpi.golden", linked["stats"]["golden_persons"])
+    sink.emit("alderbrook.mpi.golden", linked["stats"]["golden_persons"])
     _conform_state(spark, linked, observations, card)
 
 
 def _conform_state(spark, linked, observations, card) -> None:
-    spark.sparkContext.setLocalProperty("northline.crosswalk", str(len(linked["crosswalk"])))
+    spark.sparkContext.setLocalProperty("alderbrook.crosswalk", str(len(linked["crosswalk"])))
     # Stored on the job object via a module global so the report can read MPI stats
     # without recomputing the match.
     GLOBAL_STATE["linked"] = linked

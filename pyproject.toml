@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "acn-interop"
 version = "1.0.0"
-description = "Northline clinical interoperability platform for Alderbrook Care Network: HL7 v2, FHIR R4, and a Patient 360."
+description = "Alderbrook Interop clinical interoperability platform: HL7 v2, FHIR R4, and a Patient 360."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -24,7 +24,7 @@ dev = [
 ]
 
 [project.scripts]
-northline = "acn_interop.jobs.run_local:main"
+alderbrook = "acn_interop.jobs.run_local:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

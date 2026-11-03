@@ -1,7 +1,7 @@
 {
-  "name": "northline-daily-conform",
+  "name": "alderbrook-daily-conform",
   "properties": {
-    "description": "Starts the Northline conform and insight job after the FHIR bulk export lands. The Databricks token is a Key Vault reference on the linked service, not a value in this file.",
+    "description": "Starts the Alderbrook Interop conform and insight job after the FHIR bulk export lands. The Databricks token is a Key Vault reference on the linked service, not a value in this file.",
     "parameters": {
       "databricksJobId": { "type": "string" },
       "asOfDate": { "type": "string", "defaultValue": "2026-11-01" }
@@ -20,7 +20,7 @@
         }
       },
       {
-        "name": "RunNorthlineConform",
+        "name": "RunAlderbrookConform",
         "type": "DatabricksJob",
         "dependsOn": [
           { "activity": "WaitForBulkExport", "dependencyConditions": ["Succeeded"] }
@@ -32,7 +32,7 @@
           }
         },
         "linkedServiceName": {
-          "referenceName": "northline_databricks",
+          "referenceName": "alderbrook_databricks",
           "type": "LinkedServiceReference"
         }
       }

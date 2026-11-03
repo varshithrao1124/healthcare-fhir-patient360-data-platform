@@ -75,7 +75,7 @@ def postal5(value: str | None) -> str:
 def synthetic_ssn(value: str | None) -> str | None:
     """Only 900-series numbers are eligible match keys.
 
-    SSA does not issue area 900-999. Northline refuses any other pattern so a
+    SSA does not issue area 900-999. Alderbrook Interop refuses any other pattern so a
     non-synthetic identifier cannot become a deterministic link.
     """
     digits = "".join(character for character in (value or "") if character.isdigit())

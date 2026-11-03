@@ -5,7 +5,7 @@ allowed_lateness_hours: 2
 transport: kafka
 catalog: acn_prod
 token_salt_env: ACN_TOKEN_SALT
-lake_uri: abfss://clinical@${AZURE_STORAGE_ACCOUNT}.dfs.core.windows.net/northline
+lake_uri: abfss://clinical@${AZURE_STORAGE_ACCOUNT}.dfs.core.windows.net/alderbrook
 checkpoint_uri: abfss://clinical@${AZURE_STORAGE_ACCOUNT}.dfs.core.windows.net/checkpoints/capture
 event_hub:
   bootstrap_env: EVENT_HUBS_BOOTSTRAP
