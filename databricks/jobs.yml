@@ -1,0 +1,51 @@
+resources:
+  jobs:
+    northline_daily:
+      name: northline-daily-conform
+      schedule:
+        quartz_cron_expression: "0 0 6 * * ?"
+        timezone_id: America/Los_Angeles
+      tasks:
+        - task_key: conform_and_insight
+          spark_python_task:
+            python_file: ../src/acn_interop/jobs/run_local.py
+            parameters:
+              - --profile
+              - demo
+          job_cluster_key: northline
+      job_clusters:
+        - job_cluster_key: northline
+          new_cluster:
+            spark_version: 14.3.x-scala2.12
+            node_type_id: Standard_D4ds_v5
+            num_workers: 2
+            data_security_mode: USER_ISOLATION
+            spark_conf:
+              spark.databricks.delta.optimizeWrite.enabled: "true"
+              spark.databricks.delta.autoCompact.enabled: "true"
+            spark_env_vars:
+              ACN_ENV: azure
+              ACN_TOKEN_SALT: "{{secrets/${var.salt_secret_scope}/token-salt}}"
+              EVENT_HUBS_BOOTSTRAP: "{{secrets/${var.salt_secret_scope}/eventhub-bootstrap}}"
+              EVENT_HUBS_CONNECTION_STRING: "{{secrets/${var.salt_secret_scope}/eventhub-connection}}"
+              EVENT_HUB_NAME: clinical-ingress
+
+    northline_capture_stream:
+      name: northline-capture-stream
+      continuous:
+        pause_status: PAUSED
+      tasks:
+        - task_key: capture
+          spark_python_task:
+            python_file: ../src/acn_interop/jobs/run_local.py
+            parameters:
+              - --profile
+              - demo
+          job_cluster_key: stream
+      job_clusters:
+        - job_cluster_key: stream
+          new_cluster:
+            spark_version: 14.3.x-scala2.12
+            node_type_id: Standard_D4ds_v5
+            num_workers: 2
+            data_security_mode: USER_ISOLATION

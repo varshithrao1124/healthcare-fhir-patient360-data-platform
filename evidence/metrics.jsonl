@@ -1,0 +1,5 @@
+{"ts": "2026-11-03T17:43:47Z", "name": "northline.mpi.golden", "value": 34, "tags": {}}
+{"ts": "2026-11-03T17:44:14Z", "name": "northline.capture.events", "value": 110, "tags": {}}
+{"ts": "2026-11-03T17:44:14Z", "name": "northline.capture.late", "value": 1, "tags": {}}
+{"ts": "2026-11-03T17:44:14Z", "name": "northline.mpi.review_queue", "value": 1, "tags": {}}
+{"ts": "2026-11-03T17:44:14Z", "name": "northline.assure.quarantine", "value": 9, "tags": {}}

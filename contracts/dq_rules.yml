@@ -1,0 +1,61 @@
+rules:
+  - id: PER-NAME
+    severity: hard
+    domain: person
+    description: Family and given name are both present.
+  - id: PER-DOB-MISSING
+    severity: soft
+    domain: person
+    description: Birth date is absent.
+  - id: PER-DOB-PRECISION
+    severity: soft
+    domain: person
+    description: Birth date has year precision only.
+  - id: PER-DOB-INVALID
+    severity: hard
+    domain: person
+    description: Birth date text is not a real calendar date.
+  - id: PER-DOB-FUTURE
+    severity: hard
+    domain: person
+    description: Birth date is after the clinical as-of date.
+  - id: PER-GENDER-INVALID
+    severity: hard
+    domain: person
+    description: Administrative sex is outside M, F, O, U.
+  - id: PER-ADDRESS-MISSING
+    severity: soft
+    domain: person
+    description: Street address is absent.
+  - id: PER-SSN-NOT-SYNTHETIC
+    severity: soft
+    domain: person
+    description: Identifier is not in the synthetic 900 number range and is ignored for matching.
+  - id: ENC-ADMIT-MISSING
+    severity: hard
+    domain: encounter
+    description: Encounter has no admit time.
+  - id: ENC-DISCHARGE-ORDER
+    severity: hard
+    domain: encounter
+    description: Discharge timestamp precedes admit.
+  - id: ENC-PERSON-MISSING
+    severity: hard
+    domain: encounter
+    description: Encounter has no source person key.
+  - id: OBS-CODE-MISSING
+    severity: hard
+    domain: observation
+    description: Observation has no code.
+  - id: OBS-PERSON-MISSING
+    severity: hard
+    domain: observation
+    description: Observation has no person key.
+  - id: OBS-IMPLAUSIBLE
+    severity: hard
+    domain: observation
+    description: Numeric result is outside a physiologically plausible bound for its LOINC.
+  - id: VOC-UNMAPPED
+    severity: hard
+    domain: vocabulary
+    description: Local code has no LOINC, ICD-10/SNOMED, or RxNorm target.

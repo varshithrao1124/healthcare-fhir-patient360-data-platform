@@ -1,0 +1,9 @@
+source_system,local_code,icd10,snomed,display
+*,E11.9,E11.9,44054006,Type 2 diabetes mellitus
+*,I10,I10,38341003,Essential hypertension
+*,I50.9,I50.9,84114007,Heart failure
+*,J44.9,J44.9,13645005,Chronic obstructive pulmonary disease
+*,J45.909,J45.909,195967001,Asthma
+*,44054006,E11.9,44054006,Type 2 diabetes mellitus
+*,38341003,I10,38341003,Hypertensive disorder
+AMC,DX-DM2,E11.9,44054006,Type 2 diabetes mellitus

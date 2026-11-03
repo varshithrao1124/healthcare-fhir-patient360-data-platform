@@ -1,0 +1,41 @@
+{
+  "name": "northline-daily-conform",
+  "properties": {
+    "description": "Starts the Northline conform and insight job after the FHIR bulk export lands. The Databricks token is a Key Vault reference on the linked service, not a value in this file.",
+    "parameters": {
+      "databricksJobId": { "type": "string" },
+      "asOfDate": { "type": "string", "defaultValue": "2026-11-01" }
+    },
+    "activities": [
+      {
+        "name": "WaitForBulkExport",
+        "type": "Validation",
+        "typeProperties": {
+          "dataset": {
+            "referenceName": "fhir_bulk_landing",
+            "type": "DatasetReference"
+          },
+          "timeout": "0.02:00:00",
+          "sleep": 60
+        }
+      },
+      {
+        "name": "RunNorthlineConform",
+        "type": "DatabricksJob",
+        "dependsOn": [
+          { "activity": "WaitForBulkExport", "dependencyConditions": ["Succeeded"] }
+        ],
+        "typeProperties": {
+          "jobId": { "value": "@pipeline().parameters.databricksJobId", "type": "Expression" },
+          "jobParameters": {
+            "as_of": { "value": "@pipeline().parameters.asOfDate", "type": "Expression" }
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "northline_databricks",
+          "type": "LinkedServiceReference"
+        }
+      }
+    ]
+  }
+}

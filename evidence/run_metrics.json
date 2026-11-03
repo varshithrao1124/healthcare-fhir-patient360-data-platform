@@ -1,0 +1,109 @@
+{
+  "profile": "demo",
+  "as_of": "2026-11-01",
+  "generated_at": "2026-11-03T17:44:09Z",
+  "spark_version": "3.5.6",
+  "timings_seconds": {
+    "land": 0.001,
+    "bulk": 6.274,
+    "stream_backfill": 5.835,
+    "stream_delayed": 4.797,
+    "interpret": 1.529,
+    "conform": 10.974,
+    "insight": 16.952,
+    "optimize": 1.525,
+    "total": 47.946
+  },
+  "capture_events": 110,
+  "late_events": 1,
+  "dead_letters": 4,
+  "interpret_dead_letters": 3,
+  "duplicate_transport_replays": 1,
+  "source_persons": 39,
+  "golden_persons": 34,
+  "pairs_compared": 8,
+  "possible_pairs": 741,
+  "auto_edges": 5,
+  "review_queue": 1,
+  "match_type_counts": {
+    "deterministic_ssn": 8,
+    "probabilistic": 2,
+    "unmatched": 29
+  },
+  "quarantine_rows": 9,
+  "scorecard_mean_pass_rate_by_source": {
+    "AMC": 0.9517,
+    "CHO": 0.9778,
+    "RGH": 1.0
+  },
+  "care_gap_counts": {
+    "DM_NO_A1C_180D": 2,
+    "HTN_NO_SBP_365D": 1
+  },
+  "chronic_counts": {
+    "diabetes": 3,
+    "hypertension": 2,
+    "heart_failure": 0,
+    "copd": 0,
+    "asthma": 0
+  },
+  "readmission_summary": {
+    "encounters": 25,
+    "inpatient_encounters": 8,
+    "readmissions": 2,
+    "transfers": 1,
+    "readmission_rate": 0.25
+  },
+  "completeness": [
+    {
+      "source_system": "AMC",
+      "person_count": 23,
+      "dob_rate": 1.0,
+      "gender_rate": 0.9565,
+      "address_rate": 1.0,
+      "observation_count": 9,
+      "loinc_map_rate": 0.8889,
+      "encounter_count": 26
+    },
+    {
+      "source_system": "CHO",
+      "person_count": 10,
+      "dob_rate": 0.9,
+      "gender_rate": 1.0,
+      "address_rate": 0.9,
+      "observation_count": 1,
+      "loinc_map_rate": 1.0,
+      "encounter_count": 1
+    },
+    {
+      "source_system": "RGH",
+      "person_count": 9,
+      "dob_rate": 1.0,
+      "gender_rate": 1.0,
+      "address_rate": 1.0,
+      "observation_count": 1,
+      "loinc_map_rate": 1.0,
+      "encounter_count": 2
+    }
+  ],
+  "broadcast_join_observed": true,
+  "deid_identifier_columns": [],
+  "optimize": {
+    "ran": true,
+    "table": "conform/encounter",
+    "zorder": [
+      "enterprise_person_id"
+    ],
+    "before_files": 3,
+    "after_files": 3,
+    "before_bytes": 17700,
+    "after_bytes": 17700,
+    "seconds": 1.525
+  },
+  "insight_counts": {
+    "encounter_fact": 25,
+    "lab_trend": 9,
+    "timeline": 44,
+    "care_gap": 3
+  }
+}

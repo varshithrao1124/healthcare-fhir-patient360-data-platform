@@ -1,0 +1,23 @@
+bundle:
+  name: northline
+
+include:
+  - databricks/jobs.yml
+
+targets:
+  local:
+    mode: development
+    default: true
+    workspace:
+      host: ${DATABRICKS_HOST}
+  prod:
+    mode: production
+    workspace:
+      host: ${DATABRICKS_HOST}
+      root_path: /Workspace/acn/northline
+
+variables:
+  catalog:
+    default: acn_prod
+  salt_secret_scope:
+    default: northline
