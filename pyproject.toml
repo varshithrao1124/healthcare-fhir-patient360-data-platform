@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "acn-interop"
+version = "1.0.0"
+description = "Alderbrook Interop clinical interoperability platform: HL7 v2, FHIR R4, and a Patient 360."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pyspark==3.5.6",
+  "delta-spark==3.3.2",
+  "pyyaml>=6.0",
+  "jsonschema>=4.21",
+  "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+alderbrook = "acn_interop.jobs.run_local:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+  "integration: end-to-end Spark pipeline",
+  "quality: data-quality expectations",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["acn_interop"]
+omit = ["src/acn_interop/jobs/run_local.py"]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]

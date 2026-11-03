@@ -1,0 +1,24 @@
+-- Power BI measures for the de-identified Alderbrook Interop star schema.
+-- Bind these to acn_prod.deidentified and acn_prod.insight aggregates.
+-- This file was not published to the Power BI service in this repository.
+
+Readmission Rate =
+DIVIDE(
+    CALCULATE(
+        DISTINCTCOUNT(encounter_fact[source_encounter_id]),
+        encounter_fact[is_30day_readmission] = TRUE()
+    ),
+    CALCULATE(
+        DISTINCTCOUNT(encounter_fact[source_encounter_id]),
+        encounter_fact[class_code] = "IMP"
+    )
+)
+
+Open Care Gaps =
+DISTINCTCOUNT(care_gap[person_token])
+
+Persistent Abnormal Labs =
+CALCULATE(
+    COUNTROWS(lab_trend),
+    lab_trend[persistent_abnormal] = TRUE()
+)

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Alderbrook Interop local scorecard</title>
+  <style>
+    body { font-family: Georgia, serif; margin: 2rem; color: #1c2833; background: #f7f4ef; }
+    h1 { font-weight: normal; }
+    table { border-collapse: collapse; background: white; }
+    td, th { border: 1px solid #d5d0c8; padding: 0.4rem 0.7rem; }
+    .note { max-width: 42rem; }
+  </style>
+</head>
+<body>
+  <h1>Alderbrook Interop local Patient 360 scorecard</h1>
+  <p class="note">Synthetic Alderbrook Care Network data. This page is rendered from the local
+  Spark run that wrote <code>run_metrics.json</code>. It is not a Power BI or Azure screenshot.</p>
+  <table>
+    <tr><th>Profile</th><td>demo</td></tr>
+    <tr><th>As of</th><td>2026-11-01</td></tr>
+    <tr><th>Source persons</th><td>39</td></tr>
+    <tr><th>Enterprise persons</th><td>34</td></tr>
+    <tr><th>Capture events</th><td>110</td></tr>
+    <tr><th>Late events kept</th><td>1</td></tr>
+    <tr><th>Dead letters</th><td>4</td></tr>
+    <tr><th>Review queue</th><td>1</td></tr>
+    <tr><th>Inpatient encounters</th><td>8</td></tr>
+    <tr><th>30-day readmissions</th><td>2</td></tr>
+    <tr><th>Transfers under 24h</th><td>1</td></tr>
+    <tr><th>Pairs compared / possible</th><td>8 / 741</td></tr>
+  </table>
+  <h2>Care gaps</h2>
+  <table><tr><th>Gap</th><th>People</th></tr><tr><td>DM_NO_A1C_180D</td><td>2</td></tr><tr><td>HTN_NO_SBP_365D</td><td>1</td></tr></table>
+</body>
+</html>

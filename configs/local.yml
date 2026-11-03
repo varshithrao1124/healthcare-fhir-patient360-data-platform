@@ -1,0 +1,15 @@
+environment: local
+as_of: "2026-11-01"
+allowed_lateness_hours: 2
+transport: file
+token_salt_env: ACN_TOKEN_SALT
+local_dev_salt: local-dev-salt-not-for-production
+mpi:
+  auto_threshold: 0.86
+  review_threshold: 0.70
+lanes:
+  capture: "Immutable bus and bulk-export envelopes"
+  interpret: "HL7 segments and flattened FHIR elements"
+  conform: "Enterprise person, standard codes, survivorship"
+  insight: "Patient 360 measures"
+  deidentified: "Analytics projection without direct identifiers"

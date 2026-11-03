@@ -1,0 +1,12 @@
+source_system,local_code,loinc,display
+AMC,AMCGLU,2345-7,Glucose [Mass/volume] in Serum or Plasma
+RGH,RG-GLU,2345-7,Glucose [Mass/volume] in Serum or Plasma
+CHO,CHOA1C,4548-4,Hemoglobin A1c/Hemoglobin.total in Blood
+*,2345-7,2345-7,Glucose [Mass/volume] in Serum or Plasma
+*,4548-4,4548-4,Hemoglobin A1c/Hemoglobin.total in Blood
+*,718-7,718-7,Hemoglobin [Mass/volume] in Blood
+*,2823-3,2823-3,Potassium [Moles/volume] in Serum or Plasma
+*,8480-6,8480-6,Systolic blood pressure
+*,8462-4,8462-4,Diastolic blood pressure
+*,2160-0,2160-0,Creatinine [Mass/volume] in Serum or Plasma
+*,1742-6,1742-6,Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma
