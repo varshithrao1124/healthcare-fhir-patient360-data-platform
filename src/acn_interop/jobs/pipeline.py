@@ -638,13 +638,16 @@ def _write_deid(spark: SparkSession, settings: Settings) -> None:
         """
     )
     write_delta(frame, settings.lake / "deidentified" / "encounter_fact")
+    spark.read.format("delta").load(str(settings.lake / "insight" / "care_gap")).createOrReplaceTempView(
+        "insight_care_gap"
+    )
     gaps = spark.sql(
         f"""
         SELECT
           lower(substring(sha2(concat('{salt}', '|deid|', c.enterprise_person_id), 256), 1, 16)) AS person_token,
           c.gap_code,
           c.cohort
-        FROM delta.`{settings.lake / "insight" / "care_gap"}` c
+        FROM insight_care_gap c
         """
     )
     write_delta(gaps, settings.lake / "deidentified" / "care_gap")

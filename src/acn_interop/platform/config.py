@@ -57,8 +57,8 @@ def load_settings(
         )
     as_of_text = os.environ.get("ACN_AS_OF") or raw.get("as_of", "2026-11-01")
     as_of = date.fromisoformat(str(as_of_text))
-    lake_path = Path(lake)
-    evidence_path = Path(evidence) if evidence else None
+    lake_path = Path(lake).expanduser().resolve()
+    evidence_path = Path(evidence).expanduser().resolve() if evidence else None
     return Settings(
         profile=profile,
         as_of=as_of,
